@@ -3,8 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Homes under €250,000 — Polis, Peyia, Coral Bay &amp; around</title>
-<meta name="description" content="Houses and apartments for sale under EUR 250,000 in Polis, Peyia, Coral Bay, Latchi and the surrounding villages of Paphos district, Cyprus. Scraped public listings, prices as listed.">
+<meta name="theme-color" content="#0b5fff">
+<link rel="icon" href="../favicon.svg" type="image/svg+xml">
+<title>Homes up to €250,000 — Polis, Peyia, Coral Bay &amp; around</title>
+<meta name="description" content="Houses and apartments for sale up to EUR 250,000 (inclusive) in Polis, Peyia, Coral Bay, Latchi and the surrounding villages of Paphos district, Cyprus. Scraped public listings, prices as listed, each listing re-verified against its source.">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.min.css">
@@ -31,7 +33,7 @@ header .sub b{color:var(--ink)}
 .btn{font:inherit;padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:pointer}
 #map{height:380px;border:1px solid var(--line);border-radius:12px;margin:0 0 16px;background:#e9eef3;transition:height .25s}
 #map.tall{height:78vh}
-.maptools{display:flex;gap:10px;align-items:center;margin:0 0 8px;font-size:13px;color:var(--muted)}
+.maptools{display:flex;gap:10px;align-items:center;margin:0 0 8px;font-size:13px;color:var(--muted);flex-wrap:wrap}
 .legend span{display:inline-flex;align-items:center;gap:5px;margin-right:12px}
 .dot{width:12px;height:12px;border-radius:50%;display:inline-block}
 .dot.exact{background:var(--accent)}
@@ -52,6 +54,7 @@ header .sub b{color:var(--ink)}
 .body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:7px;flex:1}
 .price{font-size:24px;font-weight:700;letter-spacing:-.02em}
 .price small{font-size:12px;color:var(--muted);font-weight:500;margin-left:6px}
+.price s{font-size:14px;color:var(--muted);font-weight:500;margin-left:6px}
 .title{font-weight:600;line-height:1.3}
 .meta{display:flex;flex-wrap:wrap;gap:5px}
 .tag{background:var(--chip);border-radius:6px;padding:3px 8px;font-size:12.5px;color:#2b3542}
@@ -60,10 +63,16 @@ header .sub b{color:var(--ink)}
 .tag.village{background:#fff3df;color:#7a4b00}
 .tag.warn{background:#fff8e6;color:#8a5a00}
 .tag.ok{background:#e6f5ec;color:#0a5c3a}
+.tag.dim{background:#f1f3f6;color:#5b6675}
 .sum{color:var(--muted);font-size:13.5px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.conf{font-size:12.5px;color:#8a5a00;background:#fff8e6;border-radius:6px;padding:4px 8px}
+.dups{font-size:12.5px;color:var(--muted)}
 .src{margin-top:auto;font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;padding-top:6px;border-top:1px dashed var(--line)}
 .src a{font-weight:600}
+.ver{font-size:12px;color:var(--muted)}
 footer{color:var(--muted);font-size:13px;margin:30px 0 0;border-top:1px solid var(--line);padding-top:14px;line-height:1.6}
+footer table{border-collapse:collapse;margin:8px 0;font-size:12.5px}
+footer td,footer th{border:1px solid var(--line);padding:3px 8px;text-align:left}
 .empty{padding:40px;text-align:center;color:var(--muted)}
 @media (max-width:640px){header{padding:14px 14px 10px}.wrap{padding:0 10px 30px}#map{height:300px}.filters{gap:8px 10px}.filters input[type=range]{width:150px}}
 
@@ -85,13 +94,14 @@ footer{color:var(--muted);font-size:13px;margin:30px 0 0;border-top:1px solid va
 .ov .info .acts a,.ov .info .acts button{font:inherit;font-weight:600;padding:9px 13px;border-radius:9px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;text-decoration:none}
 .ov .info .acts a.ext{background:var(--accent);color:#fff;border-color:var(--accent)}
 .ov .info .sum{-webkit-line-clamp:unset;display:block}
-.ov .thumbs{display:flex;gap:6px;overflow-x:auto;padding:8px 0 2px}.ov .thumbs img{width:64px;height:48px;object-fit:cover;border-radius:6px;opacity:.6;cursor:pointer}.ov .thumbs img.on{opacity:1;outline:2px solid var(--accent)}
+.ov .thumbs{display:flex;gap:6px;overflow-x:auto;padding:8px 0 2px}.ov .thumbs button{padding:0;border:0;background:none;cursor:pointer;flex:0 0 auto}.ov .thumbs img{width:64px;height:48px;object-fit:cover;border-radius:6px;opacity:.6;display:block}.ov .thumbs button.on img{opacity:1;outline:2px solid var(--accent)}
+.ov *:focus-visible{outline:3px solid #ffd166;outline-offset:2px}
 @media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
 <body>
-<header>
-  <h1>Homes under €250,000 — Polis, Peyia, Coral Bay &amp; around</h1>
+<header id="hdr">
+  <h1>Homes up to €250,000 — Polis, Peyia, Coral Bay &amp; around</h1>
   <div class="sub" id="sub">Loading…</div>
 </header>
 <div class="wrap">
@@ -111,8 +121,8 @@ footer{color:var(--muted);font-size:13px;margin:30px 0 0;border-top:1px solid va
     <button class="btn" id="reset" type="button">Reset</button>
     <div class="count" id="count"></div>
   </div>
-  <div class="maptools">
-    <span class="legend"><span><i class="dot exact"></i> exact pin</span><span><i class="dot approx"></i> approximate (village centre)</span></span>
+  <div class="maptools" id="maptools">
+    <span class="legend"><span><i class="dot exact"></i> exact pin: the source states the property's own position</span><span><i class="dot approx"></i> approximate: village centre or the portal's approximate location</span><span>Studio = 0 bedrooms</span></span>
     <button class="btn" id="mapsize" type="button">Bigger map</button>
     <a href="../map.html">Full-screen map →</a>
   </div>
@@ -121,8 +131,8 @@ footer{color:var(--muted);font-size:13px;margin:30px 0 0;border-top:1px solid va
   <div class="empty" id="empty" hidden>No listings match these filters.</div>
   <footer id="foot"></footer>
 <div class="ov" id="ov" hidden role="dialog" aria-modal="true" aria-label="Listing details">
-  <div class="top"><span id="ov-title"></span><button class="x" type="button" id="ov-x" aria-label="Close">×</button></div>
-  <div class="stage"><button class="p" type="button" id="ov-prev" aria-label="Previous photo">‹</button><img id="ov-img" alt=""><button class="n" type="button" id="ov-next" aria-label="Next photo">›</button><span class="cnt" id="ov-cnt"></span></div>
+  <div class="top"><span id="ov-title"></span><button class="x" type="button" id="ov-x" aria-label="Close listing details">×</button></div>
+  <div class="stage"><button class="p" type="button" id="ov-prev" aria-label="Previous photo">‹</button><img id="ov-img" alt=""><button class="n" type="button" id="ov-next" aria-label="Next photo">›</button><span class="cnt" id="ov-cnt" aria-live="polite"></span></div>
   <div class="info" id="ov-info"></div>
 </div>
 
@@ -134,21 +144,45 @@ const BASE = document.documentElement.dataset.base || '';   // '' at the site ro
 const IMG = BASE + 'img/';
 const fmt = n => n == null ? '' : '€' + n.toLocaleString('en-GB');
 const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const dshort = s => { if (!s) return ''; const d = new Date(s); return isNaN(d) ? String(s).slice(0, 10) : d.toLocaleDateString('en-GB', {day: 'numeric', month: 'short'}); };
 const VORDER = ['Polis','Latchi','Prodromi','Argaka','Neo Chorio','Pomos','Droushia','Kathikas','Peyia','Coral Bay','Kissonerga','Chloraka','Emba'];
-let DATA = null, state = {villages: new Set(), type: '', max: 250000, beds: '', sort: 'price-asc', q: ''};
+const DEFAULT = () => ({villages: new Set(), type: '', max: 250000, beds: '', sort: 'price-asc', q: ''});
+let DATA = null, state = DEFAULT();
 let map, cluster, markersById = {}, firstFit = true;
 
 fetch(BASE + 'data.json').then(r => r.json()).then(d => { DATA = d; init(); });
 
+// ---- shareable filters: the query string mirrors the filter state (replaceState, no reload); the overlay keeps the hash for itself
+function readQuery(){
+  const p = new URLSearchParams(location.search); const s = DEFAULT();
+  if (p.get('v')) p.get('v').split(',').filter(Boolean).forEach(v => s.villages.add(v));
+  if (p.get('t')) s.type = p.get('t'); if (p.get('max')) s.max = Math.min(250000, Math.max(30000, +p.get('max') || 250000));
+  if (p.get('b') != null && p.get('b') !== '') s.beds = p.get('b'); if (p.get('s')) s.sort = p.get('s'); if (p.get('q')) s.q = p.get('q').toLowerCase();
+  return s;
+}
+function writeQuery(){
+  const p = new URLSearchParams();
+  if (state.villages.size) p.set('v', [...state.villages].join(',')); if (state.type) p.set('t', state.type); if (state.max !== 250000) p.set('max', state.max);
+  if (state.beds !== '') p.set('b', state.beds); if (state.sort !== 'price-asc') p.set('s', state.sort); if (state.q) p.set('q', state.q);
+  const qs = p.toString(); history.replaceState(history.state, '', location.pathname + (qs ? '?' + qs : '') + location.hash);
+}
+function applyStateToControls(){
+  document.querySelectorAll('.chip').forEach(c => c.classList.toggle('on', state.villages.has(c.dataset.v)));
+  document.getElementById('type').value = state.type; document.getElementById('maxprice').value = state.max; document.getElementById('maxlbl').textContent = fmt(state.max);
+  document.getElementById('beds').value = state.beds; document.getElementById('sort').value = state.sort; document.getElementById('q').value = state.q;
+}
+
 function init(){
-  const m = DATA.meta;
+  const m = DATA.meta; const lv = m.listings_last_verified || {};
+  const vspan = lv.min && lv.max ? (dshort(lv.min) === dshort(lv.max) ? dshort(lv.max) : `${dshort(lv.min)}–${dshort(lv.max)}`) : 'n/a';
   document.getElementById('sub').innerHTML =
-    `<b>${m.count}</b> listings for sale under <b>€250,000</b> (houses and apartments) across ${Object.keys(m.villages).length} villages · ` +
-    `generated ${esc(m.generated_at)} · tap a photo or a card for details and all pictures; scraped public listings, prices as listed, <b>EUR assumed</b> (the brief said “$250,000”; treated as €250,000).`;
+    `<b>${m.count}</b> listings for sale up to <b>€250,000 (inclusive)</b> — houses and apartments across ${Object.keys(m.villages).length} villages · ` +
+    `<b>listings last verified ${esc(vspan)}</b> (${lv.re_checked || 0} re-checked against the source, ${lv.crawl_only || 0} fetched once${lv.recheck_failed ? `, ${lv.recheck_failed} could not be re-checked` : ''}) · data built ${esc(m.data_built_at ? m.data_built_at.slice(0, 16).replace('T', ' ') : m.generated_at)} · ` +
+    `tap a photo or a card for details and all pictures; scraped public listings, prices as listed, <b>EUR assumed</b> (the brief said “$250,000”; treated as up to €250,000 inclusive).`;
   const vc = document.getElementById('villages');
   const names = Object.keys(m.villages).sort((a,b) => (VORDER.indexOf(a)+1||99) - (VORDER.indexOf(b)+1||99));
   names.forEach(v => {
-    const c = document.createElement('span'); c.className = 'chip'; c.innerHTML = `${esc(v)}<small>${m.villages[v]}</small>`;
+    const c = document.createElement('span'); c.className = 'chip'; c.dataset.v = v; c.innerHTML = `${esc(v)}<small>${m.villages[v]}</small>`;
     c.onclick = () => { state.villages.has(v) ? state.villages.delete(v) : state.villages.add(v); c.classList.toggle('on'); render(); };
     vc.appendChild(c);
   });
@@ -157,19 +191,30 @@ function init(){
   document.getElementById('beds').onchange = e => { state.beds = e.target.value; render(); };
   document.getElementById('sort').onchange = e => { state.sort = e.target.value; render(); };
   document.getElementById('q').oninput = e => { state.q = e.target.value.trim().toLowerCase(); render(); };
-  document.getElementById('reset').onclick = () => {
-    state = {villages: new Set(), type: '', max: 250000, beds: '', sort: 'price-asc', q: ''};
-    document.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
-    document.getElementById('type').value = ''; document.getElementById('maxprice').value = 250000; document.getElementById('maxlbl').textContent = '€250,000';
-    document.getElementById('beds').value = ''; document.getElementById('sort').value = 'price-asc'; document.getElementById('q').value = ''; render();
-  };
+  document.getElementById('reset').onclick = () => { state = DEFAULT(); applyStateToControls(); render(); };
   document.getElementById('mapsize').onclick = e => { const el = document.getElementById('map'); el.classList.toggle('tall'); e.target.textContent = el.classList.contains('tall') ? 'Smaller map' : 'Bigger map'; setTimeout(() => map.invalidateSize(), 300); };
   map = L.map('map', {scrollWheelZoom: false}).setView([34.93, 32.42], 11);
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
   cluster = L.markerClusterGroup({maxClusterRadius: 40, showCoverageOnHover: false});
   map.addLayer(cluster);
+  const f = m.funnel || {}; const cov = (m.coverage && m.coverage.lines) || [];
   const srcs = Object.entries(m.per_source).map(([k,v]) => `${esc(k)} (${v})`).join(', ');
-  document.getElementById('foot').innerHTML = `<b>Sources:</b> ${srcs}. ${esc(m.note)}<br>Duplicates of the same property across portals are merged (${m.count_before_photo_dedupe - m.count} merged by identical cover photo, more by village + price + bedrooms); the “also on” links show the other portals. Exact pins: ${m.exact_pins}; approximate (village centre): ${m.approx_pins}. Photos are the listing’s cover plus a spread of its gallery (a pool photo where the gallery names one) — they are not classified by room. Built ${esc(m.generated_at)}. Not advice; check the source listing before acting.`;
+  const fun = `<table><tr><th>Step</th><th>Listings</th></tr>` +
+    `<tr><td>Search-result cards found across all sources</td><td>${f.cards_total ?? '?'}</td></tr>` +
+    `<tr><td>Detail pages fetched</td><td>${f.detail_pages_total ?? '?'}</td></tr>` +
+    `<tr><td>In scope (village on the list, priced €10,000–€250,000, house or apartment)</td><td>${f.normalised_in_scope ?? '?'}</td></tr>` +
+    `<tr><td>Dropped because the source now says sold or withdrawn</td><td>${f.sold_or_withdrawn_dropped ?? 0}</td></tr>` +
+    `<tr><td>After identity merge (same agency reference or same page: ${f.identity_merges ?? 0} merged)</td><td>${f.after_identity_merge ?? '?'}</td></tr>` +
+    `<tr><td>After photo pass (byte-identical cover + matching facts: ${f.photo_identity_merges ?? 0} merged)</td><td>${f.after_photo_pass ?? '?'}</td></tr>` +
+    `<tr><td><b>Published</b></td><td><b>${f.published ?? m.count}</b></td></tr></table>`;
+  document.getElementById('foot').innerHTML = `<b>Sources:</b> ${srcs}. ${esc(m.note)}<br>` +
+    `<b>How the count was reached:</b> ${fun}` +
+    `Listings are merged only on positive identity (the same agency reference on two portals, the same page, or a byte-identical cover photo with the same type, bedrooms, village and area); ` +
+    `anything weaker is shown as a separate card with a “possibly the same as” note (${f.possible_duplicates ?? 0} cards) or “similar unit on the same portal” (${f.similar_units_same_portal ?? 0} cards). The “also on” links show the other portals for merged listings.<br>` +
+    `<b>Map pins:</b> exact ${m.exact_pins} (the source states the property's own position); approximate ${m.approx_pins} (village centre, the portal's approximate position, or a position shared by several agencies' listings). BuySell withholds exact addresses on almost every listing, so its pins are area centres.<br>` +
+    `<b>Coverage of each source's search:</b> ${esc(cov.join(' · '))}. ${m.coverage && m.coverage.external_checks ? 'Independent live re-walks on 6 Sep 2026 found 0 in-scope listings missing from Bazaraki, Zyprus, A20/West Coast/Sunseakers, Parker Barnes and Coral Blu; BuySell needed both sort orders to reach its own headline count.' : ''}<br>` +
+    `Photos are the listing's cover plus a spread of its gallery (a pool photo where the gallery names one) — they are not classified by room. Asking prices are shown as listed and are never added up; VAT, transfer fees and legal costs come on top where marked. Page built ${esc(m.generated_at)}. Not advice; check the source listing before acting.`;
+  state = readQuery(); applyStateToControls();
   render();
 }
 
@@ -179,49 +224,74 @@ function filtered(){
     (!state.type || r.type === state.type) &&
     (r.price <= state.max) &&
     (state.beds === '' || (r.beds != null && r.beds >= +state.beds)) &&
-    (!state.q || `${r.title} ${r.summary} ${r.village} ${r.agency} ${r.subtype} ${r.source} ${r.location_text}`.toLowerCase().includes(state.q))
+    (!state.q || `${r.title} ${r.summary} ${r.village} ${r.village_description || ''} ${r.agency} ${r.subtype} ${r.source} ${r.location_text} ${r.ref || ''} ${r.status || ''} ${(r.price_qualifier||[]).join(' ')} ${r.tenure || ''}`.toLowerCase().includes(state.q))
   );
   const s = state.sort;
   L.sort((a,b) => s === 'price-asc' ? a.price - b.price : s === 'price-desc' ? b.price - a.price : s === 'area-desc' ? (b.area_m2||0) - (a.area_m2||0) : s === 'beds-desc' ? (b.beds??-1) - (a.beds??-1) : a.village.localeCompare(b.village) || a.price - b.price);
   return L;
 }
 
-function card(r){
-  const photos = r.photos && r.photos.length ? r.photos.map((p,i) => `<figure data-open="${esc(r.id)}" data-i="${i}"><img src="${IMG}${esc(p.file)}" alt="${esc(r.title)} — ${esc(p.kind)}" loading="lazy"><span class="k">${esc(p.kind)}</span><span class="n">${i+1}/${r.photos.length}</span></figure>`).join('') : '';
+function tags(r){
   const beds = r.beds == null ? '' : (r.beds === 0 ? 'Studio' : r.beds + ' bed');
   const baths = r.baths ? r.baths + ' bath' : '';
   const area = r.area_m2 ? r.area_m2 + ' m²' : '';
+  const plot = r.plot_m2 ? 'plot ' + r.plot_m2 + ' m²' : '';
+  return `<span class="tag type ${r.type}">${r.type === 'house' ? 'House' : 'Apartment'}${r.subtype && r.subtype.toLowerCase() !== r.type ? ' · ' + esc(r.subtype) : ''}</span>` +
+    `<span class="tag village">${esc(r.village)}</span>` +
+    `${beds ? `<span class="tag">${beds}</span>` : ''}${baths ? `<span class="tag">${baths}</span>` : ''}${area ? `<span class="tag">${area}</span>` : ''}${plot ? `<span class="tag dim">${plot}</span>` : ''}` +
+    `${r.pool ? `<span class="tag ok" title="${esc(r.pool_source || '')}">pool</span>` : ''}${r.condition ? `<span class="tag">${esc(r.condition)}</span>` : ''}${r.year ? `<span class="tag">built ${esc(r.year)}</span>` : ''}` +
+    `${(r.price_qualifier||[]).map(q => `<span class="tag warn">${esc(q === 'from' ? 'price from' : q)}</span>`).join('')}${r.tenure ? `<span class="tag dim">${esc(r.tenure)}</span>` : ''}${r.energy ? `<span class="tag dim">energy ${esc(r.energy)}</span>` : ''}` +
+    `${r.status ? `<span class="tag warn">${esc(r.status)}</span>` : ''}${r.pin_exact ? '' : `<span class="tag warn" title="${esc(r.pin_source || '')}">map position approximate</span>`}`;
+}
+function conflictLine(r){
+  const c = (r.conflicts || []).filter(x => x.field === 'village' && x.description);
+  const other = (r.conflicts || []).filter(x => x.field !== 'village');
+  let out = '';
+  if (c.length) out += `<div class="conf">location as listed: ${esc(c[0].listed || r.village)} · description says ${esc(c[0].description)}</div>`;
+  if (other.length) out += `<div class="conf">${other.map(x => x.values ? `${esc(x.field)}: ${Object.entries(x.values).map(([k,v]) => `${esc(k)} ${esc(v)}`).join(' vs ')}` : esc(x.note || `${x.field} as listed: ${x.listed}`)).join(' · ')}</div>`;
+  return out;
+}
+function dupLine(r){
+  const a = (r.possible_duplicate_of || []).map(id => `<a href="#${esc(id)}" data-open="${esc(id)}">${esc(id)}</a>`);
+  const b = (r.similar_units_same_portal || []).map(id => `<a href="#${esc(id)}" data-open="${esc(id)}">${esc(id)}</a>`);
+  return (a.length ? `<div class="dups">possibly the same property as ${a.join(', ')} (not merged: no positive evidence)</div>` : '') + (b.length ? `<div class="dups">similar unit on the same portal: ${b.join(', ')}</div>` : '');
+}
+function verifiedLine(r){
+  const v = r.last_verified_at ? `verified ${dshort(r.last_verified_at)}` : 'not verified';
+  const st = r.verify_state && r.verify_state.startsWith('re-check failed') ? ' (re-check failed; date is the first fetch)' : '';
+  return `<span class="ver">${esc(v)}${st}${r.price_prev ? ` · price was ${fmt(r.price_prev)}` : ''}${r.ref ? ` · ref ${esc(r.ref)}` : ''}</span>`;
+}
+
+function card(r){
+  const photos = r.photos && r.photos.length ? r.photos.map((p,i) => `<figure data-open="${esc(r.id)}" data-i="${i}"><img src="${IMG}${esc(p.file)}" alt="${esc(r.title)} — ${esc(p.kind)}" loading="lazy"><span class="k">${esc(p.kind)}</span><span class="n">${i+1}/${r.photos.length}</span></figure>`).join('') : '';
   const also = (r.also_on||[]).map(a => `<a href="${esc(a.url)}" target="_blank" rel="noopener">also on ${esc(a.source)}</a>`).join(' ');
   return `<div class="card" id="c-${esc(r.id)}">
     ${photos ? `<div class="stripwrap"><div class="strip">${photos}</div>${r.photos.length > 1 ? `<button class="prev" type="button" aria-label="previous photo">‹</button><button class="next" type="button" aria-label="next photo">›</button>` : ''}</div>` : `<div class="nophoto">no photo available</div>`}
     <div class="body" data-open="${esc(r.id)}" role="button" tabindex="0" aria-label="Open details for ${esc(r.title)}">
-      <div class="price">${fmt(r.price)}${r.area_m2 ? `<small>€${Math.round(r.price/r.area_m2).toLocaleString('en-GB')}/m²</small>` : ''}</div>
+      <div class="price">${fmt(r.price)}${r.price_prev ? `<s>${fmt(r.price_prev)}</s>` : ''}${r.area_m2 ? `<small>€${Math.round(r.price/r.area_m2).toLocaleString('en-GB')}/m²</small>` : ''}</div>
       <div class="title">${esc(r.title)}</div>
-      <div class="meta">
-        <span class="tag type ${r.type}">${r.type === 'house' ? 'House' : 'Apartment'}${r.subtype && r.subtype.toLowerCase() !== r.type ? ' · ' + esc(r.subtype) : ''}</span>
-        <span class="tag village">${esc(r.village)}</span>
-        ${beds ? `<span class="tag">${beds}</span>` : ''}${baths ? `<span class="tag">${baths}</span>` : ''}${area ? `<span class="tag">${area}</span>` : ''}
-        ${r.pool ? `<span class="tag ok">pool</span>` : ''}${r.condition ? `<span class="tag">${esc(r.condition)}</span>` : ''}${r.year ? `<span class="tag">built ${esc(r.year)}</span>` : ''}
-        ${r.status ? `<span class="tag warn">${esc(r.status)}</span>` : ''}${r.pin_exact ? '' : `<span class="tag warn">pin approximate</span>`}
-      </div>
+      <div class="meta">${tags(r)}</div>
+      ${conflictLine(r)}
       <div class="sum">${esc(r.summary)}</div>
+      ${dupLine(r)}
       <div class="src">${esc(r.location_text && r.location_text !== r.title ? r.location_text.replace(/\s*\|\s*/g,' · ') : '')}${r.agency ? ` · ${esc(r.agency)}` : ''}<br>
-        <a href="${esc(r.url)}" target="_blank" rel="noopener" data-ext="1">View on ${esc(r.source)} ↗ (opens the agency site)</a> ${also} <a href="#" data-map="${esc(r.id)}">map</a></div>
+        <a href="${esc(r.url)}" target="_blank" rel="noopener" data-ext="1">View on ${esc(r.source)} ↗ (opens the agency site)</a> ${also} <a href="#" data-map="${esc(r.id)}">map</a> ${verifiedLine(r)}</div>
     </div></div>`;
 }
 
 function render(){
+  writeQuery();
   const L2 = filtered();
   document.getElementById('count').innerHTML = `<b>${L2.length}</b> of ${DATA.listings.length}`;
   const grid = document.getElementById('grid'); grid.innerHTML = L2.map(card).join('');
   document.getElementById('empty').hidden = L2.length > 0;
   grid.querySelectorAll('.stripwrap button').forEach(b => b.onclick = () => { const st = b.parentElement.querySelector('.strip'); st.scrollBy({left: (b.classList.contains('next') ? 1 : -1) * st.clientWidth, behavior: 'smooth'}); });
-  grid.querySelectorAll('[data-open]').forEach(el => { el.addEventListener('click', e => { if (e.target.closest('a')) return; openDetail(el.dataset.open, +(el.dataset.i || 0)); }); el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDetail(el.dataset.open, 0); } }); });
+  grid.querySelectorAll('[data-open]').forEach(el => { el.addEventListener('click', e => { if (e.target.closest('a') && !e.target.closest('a').dataset.open) return; e.preventDefault(); openDetail(el.dataset.open, +(el.dataset.i || 0), el); }); el.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openDetail(el.dataset.open, 0, el); } }); });
   grid.querySelectorAll('a[data-map]').forEach(a => a.onclick = e => { e.preventDefault(); const mk = markersById[a.dataset.map]; if (mk) { document.getElementById('map').scrollIntoView({behavior:'smooth'}); cluster.zoomToShowLayer(mk, () => mk.openPopup()); } });
   cluster.clearLayers(); markersById = {};
   L2.forEach(r => {
-    const thumb = r.photos && r.photos[0] ? `<img src="img/${esc(r.photos[0].file)}" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:6px" alt="">` : '';
-    const popup = `<div style="width:220px;font:13px system-ui">${thumb}<div style="font-weight:700;font-size:16px;margin-top:6px">${fmt(r.price)}</div><div>${esc(r.title)}</div><div style="color:#666">${esc(r.village)} · ${r.type}${r.beds != null ? ' · ' + (r.beds === 0 ? 'studio' : r.beds + ' bed') : ''}${r.pin_exact ? '' : ' · <b>approximate pin</b>'}</div><a href="#c-${esc(r.id)}" onclick="flash('${esc(r.id)}')">show card</a> · <a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.source)} ↗</a></div>`;
+    const thumb = r.photos && r.photos[0] ? `<img src="${IMG}${esc(r.photos[0].file)}" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:6px" alt="">` : '';
+    const popup = `<div style="width:220px;font:13px system-ui">${thumb}<div style="font-weight:700;font-size:16px;margin-top:6px">${fmt(r.price)}</div><div>${esc(r.title)}</div><div style="color:#666">${esc(r.village)} · ${r.type}${r.beds != null ? ' · ' + (r.beds === 0 ? 'studio' : r.beds + ' bed') : ''}${r.pin_exact ? '' : ' · <b>map position from the agency, approximate</b>'}</div><a href="#c-${esc(r.id)}" onclick="flash('${esc(r.id)}')">show card</a> · <a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.source)} ↗</a></div>`;
     const mk = r.pin_exact
       ? L.marker([r.lat, r.lon])
       : L.circleMarker([r.lat + (Math.random()-.5)*0.004, r.lon + (Math.random()-.5)*0.004], {radius: 7, color: '#b7791f', dashArray: '3 3', weight: 2, fillColor: '#fff', fillOpacity: .9});
@@ -231,45 +301,65 @@ function render(){
 }
 
 // ---- in-page details overlay (v2): a tap on a photo or a card opens this; the phone's back button closes it; only the
-// labelled 'View on <source>' button leaves the page, in a new tab.
-const ov = document.getElementById('ov'); let ovR = null, ovI = 0, ovOpen = false;
+// labelled 'View on <source>' button leaves the page, in a new tab. Accessible: role=dialog, aria-modal, labelled per listing,
+// focus moves to Close on open and back to the opener on close, Tab is trapped, the page behind is aria-hidden.
+const ov = document.getElementById('ov'); let ovR = null, ovI = 0, ovOpen = false, ovOpener = null;
+const BEHIND = () => ['hdr', 'filters', 'maptools', 'map', 'grid', 'empty', 'foot'].map(id => document.getElementById(id)).filter(Boolean);
 function byId(id){ return DATA.listings.find(x => x.id === id); }
-function openDetail(id, i){
-  const r = byId(id); if (!r) return; ovR = r; ovI = i || 0;
+function photoAlt(r, p){ return `${r.village} · ${r.type === 'house' ? 'house' : 'apartment'} · ${fmt(r.price)}${p ? ' · ' + p.kind : ''}`; }
+function openDetail(id, i, opener){
+  const r = byId(id); if (!r) return; ovR = r; ovI = i || 0; ovOpener = opener || document.activeElement;
   document.getElementById('ov-title').textContent = `${fmt(r.price)} · ${r.village}`;
-  const beds = r.beds == null ? '' : (r.beds === 0 ? 'Studio' : r.beds + ' bed'); const baths = r.baths ? r.baths + ' bath' : ''; const area = r.area_m2 ? r.area_m2 + ' m²' : '';
+  ov.setAttribute('aria-label', `Listing details: ${r.title}, ${fmt(r.price)}, ${r.village}`);
   const also = (r.also_on||[]).map(a => `<a href="${esc(a.url)}" target="_blank" rel="noopener">also on ${esc(a.source)} ↗</a>`).join('');
   document.getElementById('ov-info').innerHTML = `
-    <div class="price">${fmt(r.price)}${r.area_m2 ? `<small>€${Math.round(r.price/r.area_m2).toLocaleString('en-GB')}/m²</small>` : ''}</div>
+    <div class="price">${fmt(r.price)}${r.price_prev ? `<s>${fmt(r.price_prev)}</s>` : ''}${r.area_m2 ? `<small>€${Math.round(r.price/r.area_m2).toLocaleString('en-GB')}/m²</small>` : ''}</div>
     <div class="title">${esc(r.title)}</div>
-    <div class="meta"><span class="tag type ${r.type}">${r.type === 'house' ? 'House' : 'Apartment'}${r.subtype && r.subtype.toLowerCase() !== r.type ? ' · ' + esc(r.subtype) : ''}</span><span class="tag village">${esc(r.village)}</span>${beds ? `<span class="tag">${beds}</span>` : ''}${baths ? `<span class="tag">${baths}</span>` : ''}${area ? `<span class="tag">${area}</span>` : ''}${r.pool ? `<span class="tag ok">pool</span>` : ''}${r.condition ? `<span class="tag">${esc(r.condition)}</span>` : ''}${r.status ? `<span class="tag warn">${esc(r.status)}</span>` : ''}${r.pin_exact ? '' : `<span class="tag warn">pin approximate (village centre)</span>`}</div>
+    <div class="meta">${tags(r)}</div>
+    ${conflictLine(r)}
     <div class="acts"><a class="ext" href="${esc(r.url)}" target="_blank" rel="noopener">View on ${esc(r.source)} ↗ (agency site, new tab)</a><button type="button" id="ov-map">Show on map</button>${also}</div>
     <div class="sum">${esc(r.summary)}</div>
-    <div class="src">${esc(r.location_text || '')}${r.agency ? ` · ${esc(r.agency)}` : ''}${r.listed ? ` · listed ${esc(r.listed)}` : ''}</div>
-    <div class="thumbs" id="ov-thumbs">${(r.photos||[]).map((p,k) => `<img src="${IMG}${esc(p.file)}" alt="" data-k="${k}" loading="lazy">`).join('')}</div>`;
+    ${dupLine(r)}
+    <div class="src">${esc(r.location_text || '')}${r.agency ? ` · ${esc(r.agency)}` : ''}${r.listed ? ` · listed ${esc(r.listed)}` : ''} ${verifiedLine(r)}${r.pin_source ? `<br><span class="ver">pin: ${esc(r.pin_source)}</span>` : ''}</div>
+    <div class="thumbs" id="ov-thumbs">${(r.photos||[]).map((p,k) => `<button type="button" data-k="${k}" aria-label="Show photo ${k+1} of ${r.photos.length}: ${esc(p.kind)}"><img src="${IMG}${esc(p.file)}" alt="" loading="lazy"></button>`).join('')}</div>`;
   document.getElementById('ov-map').onclick = () => { closeDetail(); const mk = markersById[r.id]; if (mk) { document.getElementById('map').scrollIntoView({behavior:'smooth'}); cluster.zoomToShowLayer(mk, () => mk.openPopup()); } };
-  document.querySelectorAll('#ov-thumbs img').forEach(im => im.onclick = () => showPhoto(+im.dataset.k));
+  document.querySelectorAll('#ov-thumbs button').forEach(bt => bt.onclick = () => showPhoto(+bt.dataset.k));
+  document.querySelectorAll('#ov-info a[data-open]').forEach(a => a.onclick = e => { e.preventDefault(); const t = a.dataset.open; closeDetail(); setTimeout(() => { flash(t); openDetail(t, 0); }, 50); });
   showPhoto(ovI); ov.hidden = false; document.body.style.overflow = 'hidden';
+  BEHIND().forEach(el => el.setAttribute('aria-hidden', 'true'));
   if (!ovOpen) { history.pushState({ov: id}, '', '#' + id); ovOpen = true; }
   document.getElementById('ov-x').focus();
 }
 function showPhoto(k){
-  const ph = ovR.photos || []; if (!ph.length) { document.getElementById('ov-img').removeAttribute('src'); document.getElementById('ov-cnt').textContent = 'no photo'; return; }
+  const ph = ovR.photos || []; if (!ph.length) { document.getElementById('ov-img').removeAttribute('src'); document.getElementById('ov-img').alt = photoAlt(ovR) + ' · no photo'; document.getElementById('ov-cnt').textContent = 'no photo'; return; }
   ovI = (k + ph.length) % ph.length; const p = ph[ovI];
-  const im = document.getElementById('ov-img'); im.src = IMG + p.file; im.alt = `${ovR.title} — ${p.kind}`;
+  const im = document.getElementById('ov-img'); im.src = IMG + p.file; im.alt = photoAlt(ovR, p);
   document.getElementById('ov-cnt').textContent = `${ovI+1} / ${ph.length} · ${p.kind}`;
-  document.querySelectorAll('#ov-thumbs img').forEach((t,idx) => t.classList.toggle('on', idx === ovI));
+  document.querySelectorAll('#ov-thumbs button').forEach((t,idx) => { t.classList.toggle('on', idx === ovI); t.setAttribute('aria-current', idx === ovI ? 'true' : 'false'); });
   document.getElementById('ov-prev').hidden = document.getElementById('ov-next').hidden = ph.length < 2;
 }
 function closeDetail(fromHistory){
   if (ov.hidden) return; ov.hidden = true; document.body.style.overflow = ''; ovR = null;
+  BEHIND().forEach(el => el.removeAttribute('aria-hidden'));
   if (ovOpen && !fromHistory) history.back();
   ovOpen = false;
+  if (ovOpener && document.contains(ovOpener) && typeof ovOpener.focus === 'function') ovOpener.focus();
+  ovOpener = null;
 }
 document.getElementById('ov-x').onclick = () => closeDetail();
 document.getElementById('ov-prev').onclick = () => showPhoto(ovI - 1); document.getElementById('ov-next').onclick = () => showPhoto(ovI + 1);
 ov.addEventListener('click', e => { if (e.target === ov || e.target.classList.contains('stage')) closeDetail(); });
-document.addEventListener('keydown', e => { if (ov.hidden) return; if (e.key === 'Escape') closeDetail(); if (e.key === 'ArrowRight') showPhoto(ovI + 1); if (e.key === 'ArrowLeft') showPhoto(ovI - 1); });
+document.addEventListener('keydown', e => {
+  if (ov.hidden) return;
+  if (e.key === 'Escape') { e.preventDefault(); closeDetail(); return; }
+  if (e.key === 'ArrowRight') showPhoto(ovI + 1); if (e.key === 'ArrowLeft') showPhoto(ovI - 1);
+  if (e.key === 'Tab') {  // focus trap
+    const f = [...ov.querySelectorAll('button:not([hidden]), a[href], [tabindex]:not([tabindex="-1"])')].filter(el => el.offsetParent !== null);
+    if (!f.length) return; const first = f[0], last = f[f.length - 1];
+    if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  }
+});
 window.addEventListener('popstate', () => { if (!ov.hidden) closeDetail(true); });
 let tx0 = null; ov.addEventListener('touchstart', e => { tx0 = e.touches[0].clientX; }, {passive: true}); ov.addEventListener('touchend', e => { if (tx0 == null) return; const dx = e.changedTouches[0].clientX - tx0; tx0 = null; if (Math.abs(dx) > 50 && e.target.closest('.stage')) showPhoto(ovI + (dx < 0 ? 1 : -1)); }, {passive: true});
 // deep link: /#<id> opens that listing
