@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homes under €250,000 — Polis, Peyia, Coral Bay &amp; around</title>
+<meta name="description" content="Houses and apartments for sale under EUR 250,000 in Polis, Peyia, Coral Bay, Latchi and the surrounding villages of Paphos district, Cyprus. Scraped public listings, prices as listed.">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.min.css">
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--ink:#1c2430;--muted:#5b6675;--line:#e3e7ec;--accent:#0b5fff;--accent2:#0a7d4f;--warn:#b7791f;--chip:#eef2f7}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--accent)}
+header{background:#fff;border-bottom:1px solid var(--line);padding:18px 20px 12px}
+header h1{margin:0 0 4px;font-size:22px;letter-spacing:-.01em}
+header .sub{color:var(--muted);font-size:13.5px;max-width:1100px}
+header .sub b{color:var(--ink)}
+.wrap{max-width:1280px;margin:0 auto;padding:0 16px 40px}
+.filters{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:flex-end;background:#fff;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:14px 0}
+.filters label{display:flex;flex-direction:column;font-size:12px;color:var(--muted);gap:4px}
+.filters select,.filters input[type=search]{font:inherit;padding:7px 9px;border:1px solid var(--line);border-radius:8px;background:#fff;min-width:120px}
+.filters input[type=range]{width:200px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;max-width:640px}
+.chip{border:1px solid var(--line);background:var(--chip);border-radius:999px;padding:5px 11px;font-size:13px;cursor:pointer;user-select:none}
+.chip.on{background:var(--accent);color:#fff;border-color:var(--accent)}
+.chip small{opacity:.7;margin-left:4px}
+.count{margin-left:auto;font-size:14px;color:var(--muted);align-self:center}
+.count b{color:var(--ink)}
+.btn{font:inherit;padding:7px 12px;border:1px solid var(--line);border-radius:8px;background:#fff;cursor:pointer}
+#map{height:380px;border:1px solid var(--line);border-radius:12px;margin:0 0 16px;background:#e9eef3;transition:height .25s}
+#map.tall{height:78vh}
+.maptools{display:flex;gap:10px;align-items:center;margin:0 0 8px;font-size:13px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:5px;margin-right:12px}
+.dot{width:12px;height:12px;border-radius:50%;display:inline-block}
+.dot.exact{background:var(--accent)}
+.dot.approx{background:#fff;border:2px dashed var(--warn)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;scroll-margin-top:12px}
+.card.flash{outline:3px solid var(--accent)}
+.strip{display:flex;gap:2px;overflow-x:auto;scroll-snap-type:x mandatory;background:#dfe4ea;aspect-ratio:4/3}
+.strip a{flex:0 0 100%;scroll-snap-align:start;display:block;position:relative}
+.strip img{width:100%;height:100%;object-fit:cover;display:block}
+.strip .k{position:absolute;left:8px;bottom:8px;background:rgba(0,0,0,.55);color:#fff;font-size:11px;padding:2px 7px;border-radius:6px}
+.strip .n{position:absolute;right:8px;bottom:8px;background:rgba(0,0,0,.55);color:#fff;font-size:11px;padding:2px 7px;border-radius:6px}
+.stripwrap{position:relative}
+.stripwrap button{position:absolute;top:50%;transform:translateY(-50%);width:30px;height:30px;border-radius:50%;border:0;background:rgba(255,255,255,.85);color:#1c2430;font-size:18px;line-height:30px;cursor:pointer;padding:0;box-shadow:0 1px 4px rgba(0,0,0,.25)}
+.stripwrap button.prev{left:6px}.stripwrap button.next{right:6px}
+.stripwrap button:hover{background:#fff}
+.nophoto{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:13px;aspect-ratio:4/3;background:#e9eef3}
+.body{padding:12px 14px 14px;display:flex;flex-direction:column;gap:7px;flex:1}
+.price{font-size:24px;font-weight:700;letter-spacing:-.02em}
+.price small{font-size:12px;color:var(--muted);font-weight:500;margin-left:6px}
+.title{font-weight:600;line-height:1.3}
+.meta{display:flex;flex-wrap:wrap;gap:5px}
+.tag{background:var(--chip);border-radius:6px;padding:3px 8px;font-size:12.5px;color:#2b3542}
+.tag.type{background:#e7f0ff;color:#0b46bf}
+.tag.house{background:#e6f5ec;color:#0a5c3a}
+.tag.village{background:#fff3df;color:#7a4b00}
+.tag.warn{background:#fff8e6;color:#8a5a00}
+.tag.ok{background:#e6f5ec;color:#0a5c3a}
+.sum{color:var(--muted);font-size:13.5px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.src{margin-top:auto;font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 10px;align-items:center;padding-top:6px;border-top:1px dashed var(--line)}
+.src a{font-weight:600}
+footer{color:var(--muted);font-size:13px;margin:30px 0 0;border-top:1px solid var(--line);padding-top:14px;line-height:1.6}
+.empty{padding:40px;text-align:center;color:var(--muted)}
+@media (max-width:640px){header{padding:14px 14px 10px}.wrap{padding:0 10px 30px}#map{height:300px}.filters{gap:8px 10px}.filters input[type=range]{width:150px}}
+</style>
+</head>
+<body>
+<header>
+  <h1>Homes under €250,000 — Polis, Peyia, Coral Bay &amp; around</h1>
+  <div class="sub" id="sub">Loading…</div>
+</header>
+<div class="wrap">
+  <div class="filters" id="filters">
+    <label>Village <div class="chips" id="villages"></div></label>
+    <label>Type
+      <select id="type"><option value="">Houses + apartments</option><option value="house">Houses only</option><option value="apartment">Apartments only</option></select>
+    </label>
+    <label>Max price <span id="maxlbl">€250,000</span> <input type="range" id="maxprice" min="30000" max="250000" step="5000" value="250000"></label>
+    <label>Min bedrooms
+      <select id="beds"><option value="">Any</option><option value="0">Studio+</option><option value="1">1+</option><option value="2">2+</option><option value="3">3+</option><option value="4">4+</option></select>
+    </label>
+    <label>Sort
+      <select id="sort"><option value="price-asc">Price: low → high</option><option value="price-desc">Price: high → low</option><option value="area-desc">Biggest first</option><option value="beds-desc">Most bedrooms</option><option value="village">Village A→Z</option></select>
+    </label>
+    <label>Search <input type="search" id="q" placeholder="villa, pool, sea view, agency…"></label>
+    <button class="btn" id="reset" type="button">Reset</button>
+    <div class="count" id="count"></div>
+  </div>
+  <div class="maptools">
+    <span class="legend"><span><i class="dot exact"></i> exact pin</span><span><i class="dot approx"></i> approximate (village centre)</span></span>
+    <button class="btn" id="mapsize" type="button">Bigger map</button>
+    <a href="map.html">Full-screen map →</a>
+  </div>
+  <div id="map"></div>
+  <div class="grid" id="grid"></div>
+  <div class="empty" id="empty" hidden>No listings match these filters.</div>
+  <footer id="foot"></footer>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.min.js"></script>
+<script>
+const fmt = n => n == null ? '' : '€' + n.toLocaleString('en-GB');
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const VORDER = ['Polis','Latchi','Prodromi','Argaka','Neo Chorio','Pomos','Droushia','Kathikas','Peyia','Coral Bay','Kissonerga','Chloraka','Emba'];
+let DATA = null, state = {villages: new Set(), type: '', max: 250000, beds: '', sort: 'price-asc', q: ''};
+let map, cluster, markersById = {}, firstFit = true;
+
+fetch('data.json').then(r => r.json()).then(d => { DATA = d; init(); });
+
+function init(){
+  const m = DATA.meta;
+  document.getElementById('sub').innerHTML =
+    `<b>${m.count}</b> listings for sale under <b>€250,000</b> (houses and apartments) across ${Object.keys(m.villages).length} villages · ` +
+    `generated ${esc(m.generated_at)} · scraped public listings, prices as listed, <b>EUR assumed</b> (the brief said “$250,000”; treated as €250,000).`;
+  const vc = document.getElementById('villages');
+  const names = Object.keys(m.villages).sort((a,b) => (VORDER.indexOf(a)+1||99) - (VORDER.indexOf(b)+1||99));
+  names.forEach(v => {
+    const c = document.createElement('span'); c.className = 'chip'; c.innerHTML = `${esc(v)}<small>${m.villages[v]}</small>`;
+    c.onclick = () => { state.villages.has(v) ? state.villages.delete(v) : state.villages.add(v); c.classList.toggle('on'); render(); };
+    vc.appendChild(c);
+  });
+  document.getElementById('type').onchange = e => { state.type = e.target.value; render(); };
+  document.getElementById('maxprice').oninput = e => { state.max = +e.target.value; document.getElementById('maxlbl').textContent = fmt(state.max); render(); };
+  document.getElementById('beds').onchange = e => { state.beds = e.target.value; render(); };
+  document.getElementById('sort').onchange = e => { state.sort = e.target.value; render(); };
+  document.getElementById('q').oninput = e => { state.q = e.target.value.trim().toLowerCase(); render(); };
+  document.getElementById('reset').onclick = () => {
+    state = {villages: new Set(), type: '', max: 250000, beds: '', sort: 'price-asc', q: ''};
+    document.querySelectorAll('.chip').forEach(c => c.classList.remove('on'));
+    document.getElementById('type').value = ''; document.getElementById('maxprice').value = 250000; document.getElementById('maxlbl').textContent = '€250,000';
+    document.getElementById('beds').value = ''; document.getElementById('sort').value = 'price-asc'; document.getElementById('q').value = ''; render();
+  };
+  document.getElementById('mapsize').onclick = e => { const el = document.getElementById('map'); el.classList.toggle('tall'); e.target.textContent = el.classList.contains('tall') ? 'Smaller map' : 'Bigger map'; setTimeout(() => map.invalidateSize(), 300); };
+  map = L.map('map', {scrollWheelZoom: false}).setView([34.93, 32.42], 11);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {maxZoom: 19, attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'}).addTo(map);
+  cluster = L.markerClusterGroup({maxClusterRadius: 40, showCoverageOnHover: false});
+  map.addLayer(cluster);
+  const srcs = Object.entries(m.per_source).map(([k,v]) => `${esc(k)} (${v})`).join(', ');
+  document.getElementById('foot').innerHTML = `<b>Sources:</b> ${srcs}. ${esc(m.note)}<br>Duplicates of the same property across portals are merged (${m.count_before_photo_dedupe - m.count} merged by identical cover photo, more by village + price + bedrooms); the “also on” links show the other portals. Exact pins: ${m.exact_pins}; approximate (village centre): ${m.approx_pins}. Photos are the listing’s cover plus a spread of its gallery (a pool photo where the gallery names one) — they are not classified by room. Built ${esc(m.generated_at)}. Not advice; check the source listing before acting.`;
+  render();
+}
+
+function filtered(){
+  let L = DATA.listings.filter(r =>
+    (!state.villages.size || state.villages.has(r.village)) &&
+    (!state.type || r.type === state.type) &&
+    (r.price <= state.max) &&
+    (state.beds === '' || (r.beds != null && r.beds >= +state.beds)) &&
+    (!state.q || `${r.title} ${r.summary} ${r.village} ${r.agency} ${r.subtype} ${r.source} ${r.location_text}`.toLowerCase().includes(state.q))
+  );
+  const s = state.sort;
+  L.sort((a,b) => s === 'price-asc' ? a.price - b.price : s === 'price-desc' ? b.price - a.price : s === 'area-desc' ? (b.area_m2||0) - (a.area_m2||0) : s === 'beds-desc' ? (b.beds??-1) - (a.beds??-1) : a.village.localeCompare(b.village) || a.price - b.price);
+  return L;
+}
+
+function card(r){
+  const photos = r.photos && r.photos.length ? r.photos.map((p,i) => `<a href="${esc(r.url)}" target="_blank" rel="noopener"><img src="img/${esc(p.file)}" alt="${esc(r.title)} — ${esc(p.kind)}" loading="lazy"><span class="k">${esc(p.kind)}</span><span class="n">${i+1}/${r.photos.length}</span></a>`).join('') : '';
+  const beds = r.beds == null ? '' : (r.beds === 0 ? 'Studio' : r.beds + ' bed');
+  const baths = r.baths ? r.baths + ' bath' : '';
+  const area = r.area_m2 ? r.area_m2 + ' m²' : '';
+  const also = (r.also_on||[]).map(a => `<a href="${esc(a.url)}" target="_blank" rel="noopener">also on ${esc(a.source)}</a>`).join(' ');
+  return `<div class="card" id="c-${esc(r.id)}">
+    ${photos ? `<div class="stripwrap"><div class="strip">${photos}</div>${r.photos.length > 1 ? `<button class="prev" type="button" aria-label="previous photo">‹</button><button class="next" type="button" aria-label="next photo">›</button>` : ''}</div>` : `<div class="nophoto">no photo available</div>`}
+    <div class="body">
+      <div class="price">${fmt(r.price)}${r.area_m2 ? `<small>€${Math.round(r.price/r.area_m2).toLocaleString('en-GB')}/m²</small>` : ''}</div>
+      <div class="title">${esc(r.title)}</div>
+      <div class="meta">
+        <span class="tag type ${r.type}">${r.type === 'house' ? 'House' : 'Apartment'}${r.subtype && r.subtype.toLowerCase() !== r.type ? ' · ' + esc(r.subtype) : ''}</span>
+        <span class="tag village">${esc(r.village)}</span>
+        ${beds ? `<span class="tag">${beds}</span>` : ''}${baths ? `<span class="tag">${baths}</span>` : ''}${area ? `<span class="tag">${area}</span>` : ''}
+        ${r.pool ? `<span class="tag ok">pool</span>` : ''}${r.condition ? `<span class="tag">${esc(r.condition)}</span>` : ''}${r.year ? `<span class="tag">built ${esc(r.year)}</span>` : ''}
+        ${r.status ? `<span class="tag warn">${esc(r.status)}</span>` : ''}${r.pin_exact ? '' : `<span class="tag warn">pin approximate</span>`}
+      </div>
+      <div class="sum">${esc(r.summary)}</div>
+      <div class="src">${esc(r.location_text && r.location_text !== r.title ? r.location_text.replace(/\s*\|\s*/g,' · ') : '')}${r.agency ? ` · ${esc(r.agency)}` : ''}<br>
+        <a href="${esc(r.url)}" target="_blank" rel="noopener">View on ${esc(r.source)} ↗</a> ${also} <a href="#" data-map="${esc(r.id)}">map</a></div>
+    </div></div>`;
+}
+
+function render(){
+  const L2 = filtered();
+  document.getElementById('count').innerHTML = `<b>${L2.length}</b> of ${DATA.listings.length}`;
+  const grid = document.getElementById('grid'); grid.innerHTML = L2.map(card).join('');
+  document.getElementById('empty').hidden = L2.length > 0;
+  grid.querySelectorAll('.stripwrap button').forEach(b => b.onclick = () => { const st = b.parentElement.querySelector('.strip'); st.scrollBy({left: (b.classList.contains('next') ? 1 : -1) * st.clientWidth, behavior: 'smooth'}); });
+  grid.querySelectorAll('a[data-map]').forEach(a => a.onclick = e => { e.preventDefault(); const mk = markersById[a.dataset.map]; if (mk) { document.getElementById('map').scrollIntoView({behavior:'smooth'}); cluster.zoomToShowLayer(mk, () => mk.openPopup()); } });
+  cluster.clearLayers(); markersById = {};
+  L2.forEach(r => {
+    const thumb = r.photos && r.photos[0] ? `<img src="img/${esc(r.photos[0].file)}" style="width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:6px" alt="">` : '';
+    const popup = `<div style="width:220px;font:13px system-ui">${thumb}<div style="font-weight:700;font-size:16px;margin-top:6px">${fmt(r.price)}</div><div>${esc(r.title)}</div><div style="color:#666">${esc(r.village)} · ${r.type}${r.beds != null ? ' · ' + (r.beds === 0 ? 'studio' : r.beds + ' bed') : ''}${r.pin_exact ? '' : ' · <b>approximate pin</b>'}</div><a href="#c-${esc(r.id)}" onclick="flash('${esc(r.id)}')">show card</a> · <a href="${esc(r.url)}" target="_blank" rel="noopener">${esc(r.source)} ↗</a></div>`;
+    const mk = r.pin_exact
+      ? L.marker([r.lat, r.lon])
+      : L.circleMarker([r.lat + (Math.random()-.5)*0.004, r.lon + (Math.random()-.5)*0.004], {radius: 7, color: '#b7791f', dashArray: '3 3', weight: 2, fillColor: '#fff', fillOpacity: .9});
+    mk.bindPopup(popup); cluster.addLayer(mk); markersById[r.id] = mk;
+  });
+  if (firstFit && L2.length) { map.fitBounds(cluster.getBounds().pad(0.08)); firstFit = false; }
+}
+function flash(id){ const el = document.getElementById('c-' + id); if (!el) return; el.scrollIntoView({behavior:'smooth', block:'center'}); el.classList.add('flash'); setTimeout(() => el.classList.remove('flash'), 2500); }
+</script>
+</body>
+</html>
