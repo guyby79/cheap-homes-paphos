@@ -1,0 +1,1213 @@
+{
+ "generated_at": "2026-09-06T21:40:52+0300",
+ "lines": [
+  "bazaraki: 2 exhausted (run 2026-09-06T21:12)",
+  "zyprus: 2 exhausted (run 2026-09-06T21:12)",
+  "buysell: 2 exhausted (run 2026-09-06T21:15)",
+  "olugio: 4 exhausted (run 2026-09-06T21:12)",
+  "parkerbarnes: 5 exhausted (run 2026-09-06T21:13)",
+  "coralblu: 1 exhausted (run 2026-09-06T21:13)"
+ ],
+ "sources": {
+  "bazaraki": {
+   "source": "bazaraki",
+   "run_at": "2026-09-06T21:12:26+0300",
+   "searches": [
+    {
+     "search": "Paphos district, houses, <=250k",
+     "url_pattern": "https://www.bazaraki.com/real-estate-for-sale/houses/pafos-district-paphos/?price_max=250000&page=N",
+     "pages_expected": 2,
+     "pages_fetched": 2,
+     "cards_parsed": 56,
+     "unique_ids": 56,
+     "http_status": [
+      200,
+      200
+     ],
+     "challenge_detected": false,
+     "terminal": "EXHAUSTED",
+     "stop_reason": "page 2 (past pagination max 2) returned no listings",
+     "pages": [
+      {
+       "page": 1,
+       "url": "https://www.bazaraki.com/real-estate-for-sale/houses/pafos-district-paphos/?price_max=250000&page=1",
+       "http_status": 200,
+       "cards_parsed": 56,
+       "new": 56,
+       "challenge_detected": false,
+       "note": "",
+       "at": "21:11:59"
+      },
+      {
+       "page": 2,
+       "url": "https://www.bazaraki.com/real-estate-for-sale/houses/pafos-district-paphos/?price_max=250000&page=2",
+       "http_status": 200,
+       "cards_parsed": 0,
+       "new": 0,
+       "challenge_detected": false,
+       "note": "",
+       "at": "21:12:01"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "search": "Paphos district, apartments-flats, <=250k",
+     "url_pattern": "https://www.bazaraki.com/real-estate-for-sale/apartments-flats/pafos-district-paphos/?price_max=250000&page=N",
+     "pages_expected": 9,
+     "pages_fetched": 9,
+     "cards_parsed": 451,
+     "unique_ids": 451,
+     "http_status": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200
+     ],
+     "challenge_detected": false,
+     "terminal": "EXHAUSTED",
+     "stop_reason": "page 9 (past pagination max 9) returned no listings",
+     "pages": [
+      {
+       "page": 1,
+       "url": "https://www.bazaraki.com/real-estate-for-sale/apartments-flats/pafos-district-paphos/?price_max=250000&page=1",
+       "http_status": 200,
+       "cards_parsed": 60,
+       "new": 60,
+       "challenge_detected": false,
+       "note": "",
+       "at": "21:12:04"
+      },
+      {
+       "page": 2,
+       "url": "https://www.bazaraki.com/real-estate-for-sale/apartments-flats/pafos-district-paphos/?price_max=250000&page=2",
+       "http_status": 200,
+       "cards_parsed": 60,
+       "new": 60,
+       "challenge_detected": false,
+       "note": "",
+       "at": "21:12:06"
+      },
+      {
+       "page": 3,
+       "url": "https://www.bazaraki.com/real-estate-for-sale/apartments-flats/pafos-district-paphos/?price_max=250000&page=3",
+       "http_status": 200,
+       "cards_parsed": 60,
+       "new": 60,
+       "challenge_detected": false,
+       "note": "",
+       "at": "21:12:09"
+      },
+      {
+       "page": 4,
+       "url": "https://www.bazaraki.com/real-estate-for-sale/apartments-flats/pafos-district-paphos/?price_max=250000&page=4",
+       "http_status": 200,
+       "cards_parsed": 60,
+       "new": 60,
+       "challenge_detected": false,
+       "note": "",
+       "at": "21:12:12"
+      },
+      {
+       "page": 5,
+       "url": "https://www.bazaraki.com/real-estate-for-sale/apartments-flats/pafos-district-paphos/?price_max=250000&page=5",
+       "http_status": 200,
+       "cards_parsed": 60,
+       "new": 60,
+       "challenge_detected": false,
+       "note": "",
+       "at": "21:12:14"
+      },
+      {
+       "page": 6,
+       "url": "https://www.bazaraki.com/real-estate-for-sale/apartments-flats/pafos-district-paphos/?price_max=250000&page=6",
+       "http_status": 200,
+       "cards_parsed": 60,
+       "new": 60,
+       "challenge_detected": false,
+       "note": "",
+       "at": "21:12:17"
+      },
+      {
+       "page": 7,
+       "url": "https://www.bazaraki.com/real-estate-for-sale/apartments-flats/pafos-district-paphos/?price_max=250000&page=7",
+       "http_status": 200,
+       "cards_parsed": 60,
+       "new": 60,
+       "challenge_detected": false,
+       "note": "",
+       "at": "21:12:20"
+      },
+      {
+       "page": 8,
+       "url": "https://www.bazaraki.com/real-estate-for-sale/apartments-flats/pafos-district-paphos/?price_max=250000&page=8",
+       "http_status": 200,
+       "cards_parsed": 31,
+       "new": 31,
+       "challenge_detected": false,
+       "note": "",
+       "at": "21:12:22"
+      },
+      {
+       "page": 9,
+       "url": "https://www.bazaraki.com/real-estate-for-sale/apartments-flats/pafos-district-paphos/?price_max=250000&page=9",
+       "http_status": 200,
+       "cards_parsed": 0,
+       "new": 0,
+       "challenge_detected": false,
+       "note": "",
+       "at": "21:12:24"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "summary": {
+    "EXHAUSTED": 2,
+    "PARTIAL": 0,
+    "FAILED": 0
+   },
+   "cards_unique": 507
+  },
+  "buysell": {
+   "source": "buysell",
+   "run_at": "2026-09-06T21:15:31+0300",
+   "searches": [
+    {
+     "search": "combined 15-village search, houses+apartments, <=250k, sort-lp",
+     "url_pattern": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-lp/page-N",
+     "pages_expected": 18,
+     "pages_fetched": 19,
+     "cards_parsed": 438,
+     "unique_ids": 398,
+     "http_status": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200
+     ],
+     "challenge_detected": false,
+     "terminal": "EXHAUSTED",
+     "stop_reason": "walked past the expected 18 pages",
+     "pages": [
+      {
+       "page": 1,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-lp/page-1",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 24,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:12:01"
+      },
+      {
+       "page": 2,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-lp/page-2",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 22,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:12:04"
+      },
+      {
+       "page": 3,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-lp/page-3",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 22,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:12:08"
+      },
+      {
+       "page": 4,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-lp/page-4",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 24,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:12:15"
+      },
+      {
+       "page": 5,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-lp/page-5",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 23,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:12:19"
+      },
+      {
+       "page": 6,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-lp/page-6",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 24,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:12:23"
+      },
+      {
+       "page": 7,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-lp/page-7",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 23,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:12:27"
+      },
+      {
+       "page": 8,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-lp/page-8",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 22,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:12:31"
+      },
+      {
+       "page": 9,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-lp/page-9",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 22,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:12:35"
+      },
+      {
+       "page": 10,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-lp/page-10",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 24,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:12:39"
+      },
+      {
+       "page": 11,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-lp/page-11",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 23,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:12:43"
+      },
+      {
+       "page": 12,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-lp/page-12",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 24,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:12:47"
+      },
+      {
+       "page": 13,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-lp/page-13",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 23,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:12:52"
+      },
+      {
+       "page": 14,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-lp/page-14",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 23,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:12:56"
+      },
+      {
+       "page": 15,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-lp/page-15",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 23,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:13:00"
+      },
+      {
+       "page": 16,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-lp/page-16",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 23,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:13:04"
+      },
+      {
+       "page": 17,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-lp/page-17",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 24,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:13:08"
+      },
+      {
+       "page": 18,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-lp/page-18",
+       "http_status": 200,
+       "cards_parsed": 6,
+       "new": 5,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:13:12"
+      },
+      {
+       "page": 19,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-lp/page-19",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 0,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:13:17"
+      }
+     ],
+     "notes": [
+      "union of both sort orders: 414 unique ids vs headline 414 -> matches"
+     ]
+    },
+    {
+     "search": "combined 15-village search, houses+apartments, <=250k, sort-hp",
+     "url_pattern": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-hp/page-N",
+     "pages_expected": 18,
+     "pages_fetched": 19,
+     "cards_parsed": 438,
+     "unique_ids": 16,
+     "http_status": [
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200,
+      200
+     ],
+     "challenge_detected": false,
+     "terminal": "EXHAUSTED",
+     "stop_reason": "walked past the expected 18 pages",
+     "pages": [
+      {
+       "page": 1,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-hp/page-1",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 1,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:13:19"
+      },
+      {
+       "page": 2,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-hp/page-2",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 0,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:13:23"
+      },
+      {
+       "page": 3,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-hp/page-3",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 1,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:13:27"
+      },
+      {
+       "page": 4,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-hp/page-4",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 1,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:13:31"
+      },
+      {
+       "page": 5,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-hp/page-5",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 1,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:13:36"
+      },
+      {
+       "page": 6,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-hp/page-6",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 1,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:13:40"
+      },
+      {
+       "page": 7,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-hp/page-7",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 0,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:13:44"
+      },
+      {
+       "page": 8,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-hp/page-8",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 1,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:13:48"
+      },
+      {
+       "page": 9,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-hp/page-9",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 0,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:13:52"
+      },
+      {
+       "page": 10,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-hp/page-10",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 2,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:13:57"
+      },
+      {
+       "page": 11,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-hp/page-11",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 3,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:14:01"
+      },
+      {
+       "page": 12,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-hp/page-12",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 0,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:14:05"
+      },
+      {
+       "page": 13,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-hp/page-13",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 0,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:14:09"
+      },
+      {
+       "page": 14,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-hp/page-14",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 1,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:14:13"
+      },
+      {
+       "page": 15,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-hp/page-15",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 0,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:14:17"
+      },
+      {
+       "page": 16,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-hp/page-16",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 3,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:14:22"
+      },
+      {
+       "page": 17,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-hp/page-17",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 1,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:14:26"
+      },
+      {
+       "page": 18,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-hp/page-18",
+       "http_status": 200,
+       "cards_parsed": 6,
+       "new": 0,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:14:30"
+      },
+      {
+       "page": 19,
+       "url": "https://www.buysellcyprus.com/properties-for-sale/type-house-apartment/location-poli-chrysochous-paphos--argaka-paphos--chlorakas-paphos--coral-bay-paphos--drousia-paphos--emba-paphos--kathikas-paphos--kissonerga-paphos--latsi-paphos--neo-chorio-paphos--peyia-paphos--pomos-paphos--prodromi-paphos--saint-george-peyia-paphos--sea-caves-peyia-paphos/price-0-250000/sort-hp/page-19",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 0,
+       "challenge_detected": false,
+       "note": "414 properties for sale in Poli Chrysochous, Paphos and Arga",
+       "at": "21:14:34"
+      }
+     ],
+     "notes": [
+      "union of both sort orders: 414 unique ids vs headline 414 -> matches"
+     ]
+    }
+   ],
+   "summary": {
+    "EXHAUSTED": 2,
+    "PARTIAL": 0,
+    "FAILED": 0
+   },
+   "headline": 414,
+   "cards_unique": 414,
+   "in_scope_todo": 414,
+   "detail": {
+    "fetched": 19,
+    "challenge": 0,
+    "error": 0,
+    "skipped_existing": 395
+   }
+  },
+  "coralblu": {
+   "source": "coralblu",
+   "run_at": "2026-09-06T21:13:32+0300",
+   "searches": [
+    {
+     "search": "for sale, <=250k, price asc, page_num walk",
+     "url_pattern": "https://coralbluestates.com/properties/?sale_rent=for_sale&list_selling_price_amount_max=250000&sort_by=list_selling_price_amount&sort_direction=asc&page_num=N",
+     "pages_expected": null,
+     "pages_fetched": 2,
+     "cards_parsed": 7,
+     "unique_ids": 7,
+     "http_status": [
+      200,
+      200
+     ],
+     "challenge_detected": false,
+     "terminal": "EXHAUSTED",
+     "stop_reason": "page 2 has no property links (stated total 7, found 7)",
+     "pages": [
+      {
+       "page": 1,
+       "url": "https://coralbluestates.com/properties/?sale_rent=for_sale&list_selling_price_amount_max=250000&sort_by=list_selling_price_amount&sort_direction=asc&page_num=1",
+       "http_status": 200,
+       "cards_parsed": 7,
+       "new": 7,
+       "challenge_detected": false,
+       "note": "total stated 7",
+       "at": "21:13:14"
+      },
+      {
+       "page": 2,
+       "url": "https://coralbluestates.com/properties/?sale_rent=for_sale&list_selling_price_amount_max=250000&sort_by=list_selling_price_amount&sort_direction=asc&page_num=2",
+       "http_status": 200,
+       "cards_parsed": 0,
+       "new": 0,
+       "challenge_detected": false,
+       "note": "total stated 7",
+       "at": "21:13:15"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "summary": {
+    "EXHAUSTED": 1,
+    "PARTIAL": 0,
+    "FAILED": 0
+   },
+   "cards_unique": 7,
+   "stated_total": 7,
+   "detail": {
+    "fetched": 7,
+    "error": 0
+   }
+  },
+  "olugio": {
+   "source": "olugio",
+   "run_at": "2026-09-06T21:12:44+0300",
+   "searches": [
+    {
+     "search": "a20: properties/search:for-sale:district-polis price asc, until > 250k",
+     "url_pattern": "https://www.a20realestate.com/properties/search:for-sale:district-polis?sort=price-asc&page={p}",
+     "pages_expected": null,
+     "pages_fetched": 1,
+     "cards_parsed": 24,
+     "unique_ids": 15,
+     "http_status": [
+      200
+     ],
+     "challenge_detected": false,
+     "terminal": "EXHAUSTED",
+     "stop_reason": "price-ascending walk passed 250,000 on page 1",
+     "pages": [
+      {
+       "page": 1,
+       "url": "https://www.a20realestate.com/properties/search:for-sale:district-polis?sort=price-asc&page=1",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 15,
+       "challenge_detected": false,
+       "note": "over250k=True",
+       "at": "21:12:27"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "search": "a20: properties/search:for-sale:district-paphos price asc, until > 250k",
+     "url_pattern": "https://www.a20realestate.com/properties/search:for-sale:district-paphos?sort=price-asc&page={p}",
+     "pages_expected": null,
+     "pages_fetched": 1,
+     "cards_parsed": 2,
+     "unique_ids": 1,
+     "http_status": [
+      200
+     ],
+     "challenge_detected": false,
+     "terminal": "EXHAUSTED",
+     "stop_reason": "price-ascending walk passed 250,000 on page 1",
+     "pages": [
+      {
+       "page": 1,
+       "url": "https://www.a20realestate.com/properties/search:for-sale:district-paphos?sort=price-asc&page=1",
+       "http_status": 200,
+       "cards_parsed": 2,
+       "new": 1,
+       "challenge_detected": false,
+       "note": "over250k=True",
+       "at": "21:12:28"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "search": "westcoast: properties/search:for-sale price asc, until > 250k",
+     "url_pattern": "https://www.westcoastcyprus.com/properties/search:for-sale?sort=price-asc&page={p}",
+     "pages_expected": null,
+     "pages_fetched": 4,
+     "cards_parsed": 96,
+     "unique_ids": 92,
+     "http_status": [
+      200,
+      200,
+      200,
+      200
+     ],
+     "challenge_detected": false,
+     "terminal": "EXHAUSTED",
+     "stop_reason": "price-ascending walk passed 250,000 on page 4",
+     "pages": [
+      {
+       "page": 1,
+       "url": "https://www.westcoastcyprus.com/properties/search:for-sale?sort=price-asc&page=1",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 24,
+       "challenge_detected": false,
+       "note": "over250k=False",
+       "at": "21:12:30"
+      },
+      {
+       "page": 2,
+       "url": "https://www.westcoastcyprus.com/properties/search:for-sale?sort=price-asc&page=2",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 24,
+       "challenge_detected": false,
+       "note": "over250k=False",
+       "at": "21:12:32"
+      },
+      {
+       "page": 3,
+       "url": "https://www.westcoastcyprus.com/properties/search:for-sale?sort=price-asc&page=3",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 24,
+       "challenge_detected": false,
+       "note": "over250k=False",
+       "at": "21:12:33"
+      },
+      {
+       "page": 4,
+       "url": "https://www.westcoastcyprus.com/properties/search:for-sale?sort=price-asc&page=4",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 20,
+       "challenge_detected": false,
+       "note": "over250k=True",
+       "at": "21:12:35"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "search": "sunseakers: properties/search:for-sale price asc, until > 250k",
+     "url_pattern": "https://www.sunseakerscyprus.com/properties/search:for-sale?sort=price-asc&page={p}",
+     "pages_expected": null,
+     "pages_fetched": 4,
+     "cards_parsed": 96,
+     "unique_ids": 91,
+     "http_status": [
+      200,
+      200,
+      200,
+      200
+     ],
+     "challenge_detected": false,
+     "terminal": "EXHAUSTED",
+     "stop_reason": "price-ascending walk passed 250,000 on page 4",
+     "pages": [
+      {
+       "page": 1,
+       "url": "https://www.sunseakerscyprus.com/properties/search:for-sale?sort=price-asc&page=1",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 24,
+       "challenge_detected": false,
+       "note": "over250k=False",
+       "at": "21:12:37"
+      },
+      {
+       "page": 2,
+       "url": "https://www.sunseakerscyprus.com/properties/search:for-sale?sort=price-asc&page=2",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 24,
+       "challenge_detected": false,
+       "note": "over250k=False",
+       "at": "21:12:38"
+      },
+      {
+       "page": 3,
+       "url": "https://www.sunseakerscyprus.com/properties/search:for-sale?sort=price-asc&page=3",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 24,
+       "challenge_detected": false,
+       "note": "over250k=False",
+       "at": "21:12:40"
+      },
+      {
+       "page": 4,
+       "url": "https://www.sunseakerscyprus.com/properties/search:for-sale?sort=price-asc&page=4",
+       "http_status": 200,
+       "cards_parsed": 24,
+       "new": 19,
+       "challenge_detected": false,
+       "note": "over250k=True",
+       "at": "21:12:41"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "summary": {
+    "EXHAUSTED": 4,
+    "PARTIAL": 0,
+    "FAILED": 0
+   },
+   "cards_unique": 199,
+   "in_scope_todo": 55,
+   "detail": {
+    "fetched": 1,
+    "cached": 54,
+    "error": 0
+   }
+  },
+  "parkerbarnes": {
+   "source": "parkerbarnes",
+   "run_at": "2026-09-06T21:13:12+0300",
+   "searches": [
+    {
+     "search": "sales <=250k, type=ANY, perPage=200",
+     "url_pattern": "https://www.parkerbarnes.com/property/listings_sales.php?sales_or_rental=Sale&perPage=200&price_max=250000",
+     "pages_expected": null,
+     "pages_fetched": 1,
+     "cards_parsed": 16,
+     "unique_ids": 15,
+     "http_status": [
+      200
+     ],
+     "challenge_detected": false,
+     "terminal": "EXHAUSTED",
+     "stop_reason": "16 panels on one page, below perPage 200",
+     "pages": [
+      {
+       "page": 1,
+       "url": "https://www.parkerbarnes.com/property/listings_sales.php?sales_or_rental=Sale&perPage=200&price_max=250000",
+       "http_status": 200,
+       "cards_parsed": 16,
+       "new": 15,
+       "challenge_detected": false,
+       "note": "",
+       "at": "21:12:44"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "search": "sales <=250k, type=Apartment, perPage=200",
+     "url_pattern": "https://www.parkerbarnes.com/property/listings_sales.php?sales_or_rental=Sale&perPage=200&price_max=250000&property_type=Apartment",
+     "pages_expected": null,
+     "pages_fetched": 1,
+     "cards_parsed": 7,
+     "unique_ids": 0,
+     "http_status": [
+      200
+     ],
+     "challenge_detected": false,
+     "terminal": "EXHAUSTED",
+     "stop_reason": "7 panels on one page, below perPage 200",
+     "pages": [
+      {
+       "page": 1,
+       "url": "https://www.parkerbarnes.com/property/listings_sales.php?sales_or_rental=Sale&perPage=200&price_max=250000&property_type=Apartment",
+       "http_status": 200,
+       "cards_parsed": 7,
+       "new": 0,
+       "challenge_detected": false,
+       "note": "",
+       "at": "21:12:46"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "search": "sales <=250k, type=Townhouse, perPage=200",
+     "url_pattern": "https://www.parkerbarnes.com/property/listings_sales.php?sales_or_rental=Sale&perPage=200&price_max=250000&property_type=Townhouse",
+     "pages_expected": null,
+     "pages_fetched": 1,
+     "cards_parsed": 4,
+     "unique_ids": 0,
+     "http_status": [
+      200
+     ],
+     "challenge_detected": false,
+     "terminal": "EXHAUSTED",
+     "stop_reason": "4 panels on one page, below perPage 200",
+     "pages": [
+      {
+       "page": 1,
+       "url": "https://www.parkerbarnes.com/property/listings_sales.php?sales_or_rental=Sale&perPage=200&price_max=250000&property_type=Townhouse",
+       "http_status": 200,
+       "cards_parsed": 4,
+       "new": 0,
+       "challenge_detected": false,
+       "note": "",
+       "at": "21:12:47"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "search": "sales <=250k, type=Villa, perPage=200",
+     "url_pattern": "https://www.parkerbarnes.com/property/listings_sales.php?sales_or_rental=Sale&perPage=200&price_max=250000&property_type=Villa",
+     "pages_expected": null,
+     "pages_fetched": 1,
+     "cards_parsed": 1,
+     "unique_ids": 0,
+     "http_status": [
+      200
+     ],
+     "challenge_detected": false,
+     "terminal": "EXHAUSTED",
+     "stop_reason": "1 panels on one page, below perPage 200",
+     "pages": [
+      {
+       "page": 1,
+       "url": "https://www.parkerbarnes.com/property/listings_sales.php?sales_or_rental=Sale&perPage=200&price_max=250000&property_type=Villa",
+       "http_status": 200,
+       "cards_parsed": 1,
+       "new": 0,
+       "challenge_detected": false,
+       "note": "",
+       "at": "21:12:48"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "search": "sales <=250k, type=Village House, perPage=200",
+     "url_pattern": "https://www.parkerbarnes.com/property/listings_sales.php?sales_or_rental=Sale&perPage=200&price_max=250000&property_type=Village%20House",
+     "pages_expected": null,
+     "pages_fetched": 1,
+     "cards_parsed": 0,
+     "unique_ids": 0,
+     "http_status": [
+      200
+     ],
+     "challenge_detected": false,
+     "terminal": "EXHAUSTED",
+     "stop_reason": "0 panels on one page, below perPage 200",
+     "pages": [
+      {
+       "page": 1,
+       "url": "https://www.parkerbarnes.com/property/listings_sales.php?sales_or_rental=Sale&perPage=200&price_max=250000&property_type=Village%20House",
+       "http_status": 200,
+       "cards_parsed": 0,
+       "new": 0,
+       "challenge_detected": false,
+       "note": "",
+       "at": "21:12:50"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "summary": {
+    "EXHAUSTED": 5,
+    "PARTIAL": 0,
+    "FAILED": 0
+   },
+   "cards_unique": 15,
+   "detail": {
+    "fetched": 15,
+    "error": 0
+   }
+  },
+  "zyprus": {
+   "source": "zyprus",
+   "run_at": "2026-09-06T21:12:29+0300",
+   "searches": [
+    {
+     "search": "Paphos district, sale, <=250k, apartments (type_top=1), price asc",
+     "url_pattern": "https://www.zyprus.com/search/sale/grid?location=Paphos%2C%20Paphos&type_top%5B%5D=1&price_to=250000&sort_bef_combine=price_ASC&page=N",
+     "pages_expected": 5,
+     "pages_fetched": 5,
+     "cards_parsed": 99,
+     "unique_ids": 95,
+     "http_status": [
+      200,
+      200,
+      200,
+      200,
+      200
+     ],
+     "challenge_detected": false,
+     "terminal": "EXHAUSTED",
+     "stop_reason": "page 4 returned only already-seen cards (1): past the last page",
+     "pages": [
+      {
+       "page": 0,
+       "url": "https://www.zyprus.com/search/sale/grid?location=Paphos%2C%20Paphos&type_top%5B%5D=1&price_to=250000&sort_bef_combine=price_ASC&page=0",
+       "http_status": 200,
+       "cards_parsed": 25,
+       "new": 25,
+       "challenge_detected": false,
+       "note": "Apartments For Sale in Paphos, Paphos, Cyprus | Zyprus",
+       "at": "21:12:01"
+      },
+      {
+       "page": 1,
+       "url": "https://www.zyprus.com/search/sale/grid?location=Paphos%2C%20Paphos&type_top%5B%5D=1&price_to=250000&sort_bef_combine=price_ASC&page=1",
+       "http_status": 200,
+       "cards_parsed": 25,
+       "new": 24,
+       "challenge_detected": false,
+       "note": "Apartments For Sale in Paphos, Paphos, Cyprus | Zyprus",
+       "at": "21:12:06"
+      },
+      {
+       "page": 2,
+       "url": "https://www.zyprus.com/search/sale/grid?location=Paphos%2C%20Paphos&type_top%5B%5D=1&price_to=250000&sort_bef_combine=price_ASC&page=2",
+       "http_status": 200,
+       "cards_parsed": 25,
+       "new": 24,
+       "challenge_detected": false,
+       "note": "Apartments For Sale in Paphos, Paphos, Cyprus | Zyprus",
+       "at": "21:12:11"
+      },
+      {
+       "page": 3,
+       "url": "https://www.zyprus.com/search/sale/grid?location=Paphos%2C%20Paphos&type_top%5B%5D=1&price_to=250000&sort_bef_combine=price_ASC&page=3",
+       "http_status": 200,
+       "cards_parsed": 23,
+       "new": 22,
+       "challenge_detected": false,
+       "note": "Apartments For Sale in Paphos, Paphos, Cyprus | Zyprus",
+       "at": "21:12:16"
+      },
+      {
+       "page": 4,
+       "url": "https://www.zyprus.com/search/sale/grid?location=Paphos%2C%20Paphos&type_top%5B%5D=1&price_to=250000&sort_bef_combine=price_ASC&page=4",
+       "http_status": 200,
+       "cards_parsed": 1,
+       "new": 0,
+       "challenge_detected": false,
+       "note": "Apartments For Sale in Paphos, Paphos, Cyprus | Zyprus",
+       "at": "21:12:21"
+      }
+     ],
+     "notes": []
+    },
+    {
+     "search": "Paphos district, sale, <=250k, houses (type_top=3), price asc",
+     "url_pattern": "https://www.zyprus.com/search/sale/grid?location=Paphos%2C%20Paphos&type_top%5B%5D=3&price_to=250000&sort_bef_combine=price_ASC&page=N",
+     "pages_expected": 2,
+     "pages_fetched": 2,
+     "cards_parsed": 14,
+     "unique_ids": 12,
+     "http_status": [
+      200,
+      200
+     ],
+     "challenge_detected": false,
+     "terminal": "EXHAUSTED",
+     "stop_reason": "page 1 returned only already-seen cards (1): past the last page",
+     "pages": [
+      {
+       "page": 0,
+       "url": "https://www.zyprus.com/search/sale/grid?location=Paphos%2C%20Paphos&type_top%5B%5D=3&price_to=250000&sort_bef_combine=price_ASC&page=0",
+       "http_status": 200,
+       "cards_parsed": 13,
+       "new": 12,
+       "challenge_detected": false,
+       "note": "Houses For Sale in Paphos, Paphos, Cyprus | Zyprus",
+       "at": "21:12:24"
+      },
+      {
+       "page": 1,
+       "url": "https://www.zyprus.com/search/sale/grid?location=Paphos%2C%20Paphos&type_top%5B%5D=3&price_to=250000&sort_bef_combine=price_ASC&page=1",
+       "http_status": 200,
+       "cards_parsed": 1,
+       "new": 0,
+       "challenge_detected": false,
+       "note": "Houses For Sale in Paphos, Paphos, Cyprus | Zyprus",
+       "at": "21:12:29"
+      }
+     ],
+     "notes": []
+    }
+   ],
+   "summary": {
+    "EXHAUSTED": 2,
+    "PARTIAL": 0,
+    "FAILED": 0
+   },
+   "cards_unique": 107,
+   "in_scope_todo": 24,
+   "detail": {
+    "fetched": 0,
+    "challenge": 0,
+    "error": 0,
+    "skipped_existing": 24
+   }
+  }
+ },
+ "external_checks": {
+  "bazaraki_probe_2026-09-06": {
+   "method": "independent read-only spot check (state/cheap-homes-verification-20260906.md): 7 Bazaraki list pages, 5 km radius around Polis, Peyia, Kissonerga x apartments/houses x <= 250k, pages 1-3 or to the last page, 157 unique ads",
+   "result": "42 ads not in the published data, all 42 in out-of-scope villages (Agios Theodoros 8, Tala 7, Moutallos 7, Tremithousa 6, Tombs of the Kings 5, Anavargos 4, Agios Pavlos 2, Lempa 2, Mesogi 1); 0 in-scope ads missing"
+  }
+ },
+ "funnel": {
+  "cards_discovered": {
+   "Bazaraki": 507,
+   "Zyprus": 107,
+   "BuySell Cyprus": 414,
+   "olugio (A20 + West Coast + Sunseakers)": 199,
+   "Parker Barnes": 15,
+   "Coral Blu Estates": 7
+  },
+  "cards_total": 1249,
+  "detail_pages": {
+   "Bazaraki": 122,
+   "Zyprus": 24,
+   "BuySell Cyprus": 415,
+   "olugio (A20 + West Coast + Sunseakers)": 55,
+   "Parker Barnes": 15,
+   "Coral Blu Estates": 7
+  },
+  "detail_pages_total": 638,
+  "normalised_in_scope": 604,
+  "excluded": {
+   "village out of scope / unmatched": 10,
+   "not residential": 11,
+   "sold (source says)": 13
+  },
+  "sold_or_withdrawn_dropped": 13,
+  "identity_merges": 42,
+  "after_identity_merge": 562
+ }
+}

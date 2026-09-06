@@ -150,7 +150,7 @@ const DEFAULT = () => ({villages: new Set(), type: '', max: 250000, beds: '', so
 let DATA = null, state = DEFAULT();
 let map, cluster, markersById = {}, firstFit = true;
 
-fetch(BASE + 'data.json').then(r => r.json()).then(d => { DATA = d; init(); });
+fetch(BASE + 'data.json').then(r => r.json()).then(d => { DATA = d; init(); openFromHash(true); });
 
 // ---- shareable filters: the query string mirrors the filter state (replaceState, no reload); the overlay keeps the hash for itself
 function readQuery(){
@@ -198,7 +198,7 @@ function init(){
   cluster = L.markerClusterGroup({maxClusterRadius: 40, showCoverageOnHover: false});
   map.addLayer(cluster);
   const f = m.funnel || {}; const cov = (m.coverage && m.coverage.lines) || [];
-  const srcs = Object.entries(m.per_source).map(([k,v]) => `${esc(k)} (${v})`).join(', ');
+  const srcs = Object.entries(m.per_source).filter(([k,v]) => v.in_scope).map(([k,v]) => `${esc(k)}: ${v.kept} shown` + (v.merged_into_other_source ? `, ${v.merged_into_other_source} merged into another portal's card` : '') + (v.merged_within_source ? `, ${v.merged_within_source} merged with a re-listing on the same portal` : '') + (v.dropped_sold_or_withdrawn ? `, ${v.dropped_sold_or_withdrawn} dropped as sold/withdrawn` : '')).join(' · ');
   const fun = `<table><tr><th>Step</th><th>Listings</th></tr>` +
     `<tr><td>Search-result cards found across all sources</td><td>${f.cards_total ?? '?'}</td></tr>` +
     `<tr><td>Detail pages fetched</td><td>${f.detail_pages_total ?? '?'}</td></tr>` +
@@ -207,12 +207,12 @@ function init(){
     `<tr><td>After identity merge (same agency reference or same page: ${f.identity_merges ?? 0} merged)</td><td>${f.after_identity_merge ?? '?'}</td></tr>` +
     `<tr><td>After photo pass (byte-identical cover + matching facts: ${f.photo_identity_merges ?? 0} merged)</td><td>${f.after_photo_pass ?? '?'}</td></tr>` +
     `<tr><td><b>Published</b></td><td><b>${f.published ?? m.count}</b></td></tr></table>`;
-  document.getElementById('foot').innerHTML = `<b>Sources:</b> ${srcs}. ${esc(m.note)}<br>` +
+  document.getElementById('foot').innerHTML = `<b>Sources</b> (in-scope listings per portal, and where they went): ${srcs}. ${esc(m.note)}<br>` +
     `<b>How the count was reached:</b> ${fun}` +
     `Listings are merged only on positive identity (the same agency reference on two portals, the same page, or a byte-identical cover photo with the same type, bedrooms, village and area); ` +
     `anything weaker is shown as a separate card with a “possibly the same as” note (${f.possible_duplicates ?? 0} cards) or “similar unit on the same portal” (${f.similar_units_same_portal ?? 0} cards). The “also on” links show the other portals for merged listings.<br>` +
     `<b>Map pins:</b> exact ${m.exact_pins} (the source states the property's own position); approximate ${m.approx_pins} (village centre, the portal's approximate position, or a position shared by several agencies' listings). BuySell withholds exact addresses on almost every listing, so its pins are area centres.<br>` +
-    `<b>Coverage of each source's search:</b> ${esc(cov.join(' · '))}. ${m.coverage && m.coverage.external_checks ? 'Independent live re-walks on 6 Sep 2026 found 0 in-scope listings missing from Bazaraki, Zyprus, A20/West Coast/Sunseakers, Parker Barnes and Coral Blu; BuySell needed both sort orders to reach its own headline count.' : ''}<br>` +
+    `<b>Coverage of each source's search</b> (<a href="${BASE}coverage.json">evidence per search</a>): ${esc(cov.join(' · '))}. ${m.coverage && m.coverage.external_checks ? 'Independent live re-walks on 6 Sep 2026 found 0 in-scope listings missing from Bazaraki, Zyprus, A20/West Coast/Sunseakers, Parker Barnes and Coral Blu; BuySell needed both sort orders to reach its own headline count.' : ''}<br>` +
     `Photos are the listing's cover plus a spread of its gallery (a pool photo where the gallery names one) — they are not classified by room. Asking prices are shown as listed and are never added up; VAT, transfer fees and legal costs come on top where marked. Page built ${esc(m.generated_at)}. Not advice; check the source listing before acting.`;
   state = readQuery(); applyStateToControls();
   render();
@@ -307,7 +307,7 @@ const ov = document.getElementById('ov'); let ovR = null, ovI = 0, ovOpen = fals
 const BEHIND = () => ['hdr', 'filters', 'maptools', 'map', 'grid', 'empty', 'foot'].map(id => document.getElementById(id)).filter(Boolean);
 function byId(id){ return DATA.listings.find(x => x.id === id); }
 function photoAlt(r, p){ return `${r.village} · ${r.type === 'house' ? 'house' : 'apartment'} · ${fmt(r.price)}${p ? ' · ' + p.kind : ''}`; }
-function openDetail(id, i, opener){
+function openDetail(id, i, opener, fromHistory){
   const r = byId(id); if (!r) return; ovR = r; ovI = i || 0; ovOpener = opener || document.activeElement;
   document.getElementById('ov-title').textContent = `${fmt(r.price)} · ${r.village}`;
   ov.setAttribute('aria-label', `Listing details: ${r.title}, ${fmt(r.price)}, ${r.village}`);
@@ -327,7 +327,9 @@ function openDetail(id, i, opener){
   document.querySelectorAll('#ov-info a[data-open]').forEach(a => a.onclick = e => { e.preventDefault(); const t = a.dataset.open; closeDetail(); setTimeout(() => { flash(t); openDetail(t, 0); }, 50); });
   showPhoto(ovI); ov.hidden = false; document.body.style.overflow = 'hidden';
   BEHIND().forEach(el => el.setAttribute('aria-hidden', 'true'));
-  if (!ovOpen) { history.pushState({ov: id}, '', '#' + id); ovOpen = true; }
+  if (fromHistory) ovOpen = true;                                           // Forward/initial hash: the URL already carries the state
+  else if (!ovOpen) { history.pushState({ov: id}, '', '#' + id); ovOpen = true; }
+  else if (location.hash.slice(1) !== id) history.replaceState({ov: id}, '', '#' + id);   // switching listing inside the open overlay
   document.getElementById('ov-x').focus();
 }
 function showPhoto(k){
@@ -360,10 +362,25 @@ document.addEventListener('keydown', e => {
     else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
   }
 });
-window.addEventListener('popstate', () => { if (!ov.hidden) closeDetail(true); });
+// Back/Forward and shared #listing-id links are driven by the URL state: a hash that names a listing opens it, no hash closes it
+let hashHandled = false;
+function openFromHash(initial){
+  const id = location.hash.slice(1);
+  if (!DATA) return;
+  if (id && byId(id)) {
+    if (initial === true && !hashHandled) {   // arrived by a shared link: put a no-hash entry underneath so Back closes, Forward reopens
+      hashHandled = true; history.replaceState(null, '', location.pathname + location.search); history.pushState({ov: id}, '', '#' + id);
+    }
+    if (ov.hidden || (ovR && ovR.id !== id)) openDetail(id, 0, null, true);
+  }
+  else if (!ov.hidden) closeDetail(true);
+  hashHandled = true;
+}
+window.addEventListener('popstate', () => openFromHash(false));
+window.addEventListener('hashchange', () => openFromHash(false));
 let tx0 = null; ov.addEventListener('touchstart', e => { tx0 = e.touches[0].clientX; }, {passive: true}); ov.addEventListener('touchend', e => { if (tx0 == null) return; const dx = e.changedTouches[0].clientX - tx0; tx0 = null; if (Math.abs(dx) > 50 && e.target.closest('.stage')) showPhoto(ovI + (dx < 0 ? 1 : -1)); }, {passive: true});
 // deep link: /#<id> opens that listing
-window.addEventListener('load', () => { const id = location.hash.slice(1); if (id && DATA) setTimeout(() => openDetail(id, 0), 300); });
+window.addEventListener('load', () => openFromHash(true));   // harmless if data is not there yet: the data promise calls openFromHash(true) itself
 function flash(id){ const el = document.getElementById('c-' + id); if (!el) return; el.scrollIntoView({behavior:'smooth', block:'center'}); el.classList.add('flash'); setTimeout(() => el.classList.remove('flash'), 2500); }
 </script>
 </body>
