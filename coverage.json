@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-09-07T20:40:57+0300",
+ "generated_at": "2026-09-07T20:54:28+0300",
  "lines": [
   "bazaraki: 2 exhausted (run 2026-09-06T21:12)",
   "zyprus: 2 exhausted (run 2026-09-06T21:12)",
@@ -1207,7 +1207,7 @@
    "sold (source says)": 13
   },
   "sold_or_withdrawn_dropped": 13,
-  "identity_merges": 42,
-  "after_identity_merge": 562
+  "identity_merges": 44,
+  "after_identity_merge": 560
  }
 }
